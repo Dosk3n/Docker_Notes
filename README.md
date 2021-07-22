@@ -111,24 +111,23 @@ By supplying a local folder instead of a docker volume it will bind the supplied
 
 # DOCKER COMPOSE NOTES
 
-## Docker Compose
 Docker compose allows the creation of a "config" file to create the containers. Docker is a quick way of bringing up an image on the command line, however if there are a lot of options being added on the command line it can be confusing. This is where creating a config file and using docker compose is the better choice.
 
 By using docker compose we are able to create a single yml file that can include networking, container links, port configuration and more all in one easily readable place.
 
-### Docker Compose Versions
-#### Version 1
+## Docker Compose Versions
+### Version 1
 There are multiple versions of docker-compose which can be distinguised from the format of the yaml file. Version 1 you will see the container names as the root of each section and has very limited config options. Networking in Version 1 requires --link options.
 
-#### Version 2
+### Version 2
 Version 2 needs to start with "version: 2" and the container names will be under a "services:" section.
 
 Networking in Version 1 requires --link options network the containers together while in Version 2+ there is a default bridged network allowing all containers to talk to each other and the links section of docker-compose.yml can be removed.
 
-#### Version 3
+### Version 3
 Version 3 continues from Version 2 with the same features listed above but will start with "version: 3" and has additional options such as support for docker swarm.
 
-### Multiple Containers via Docker Compose
+## Multiple Containers via Docker Compose
 Assuming we have a situation where we want 5 different containers set up. To do this with regular docker we would need to use docker run 5 times like this:
 ```bash
 docker run -d --name redis redis
@@ -176,7 +175,7 @@ docker-compose up
 ```
 NOTE: If using docker-compose & version 2+ yml format, linking is not required as all containers will use a default bridged network.
 
-### Custom Unbuilt Images
+## Custom Unbuilt Images
 If you are not using an image that can be pulled from dockerhub or you have an unbuilt image (folder with docker file and files), you can replace "image" with "build" and supply the location to the folder with dockerfile to build the image at the time you bring this up with docker compose
 ```yml
 version: 2
@@ -193,7 +192,7 @@ services:
             - redis
 ```
 
-### Container Start Up Order
+## Container Start Up Order
 ```yml
 version: 2
 services:
@@ -210,7 +209,7 @@ services:
 ```
 By adding a "depends_on" option, we can make sure that the container will only start if the depended on container successfully starts.
 
-### Networking
+## Networking
 Multiple networks can be set up with docker compose and assigned to specific containers allowing some networks to be front end facing and others back end facing or with no external network connections. This is done by adding a "networks:" section.
 In this example "vote" and "result" apps are websites so front facing for user access but also need to talk to back end databases, while db and redis only need a back end connection.
 ```yml
