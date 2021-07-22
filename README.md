@@ -1,5 +1,5 @@
 # NOTES
-https://www.youtube.com/watch?v=fqMOX6JJhGo&ab_channel=freeCodeCamp.org
+Course followed: https://www.youtube.com/watch?v=fqMOX6JJhGo&ab_channel=freeCodeCamp.org
 
 ## Creation Notes
 
